@@ -1,0 +1,45 @@
+hello(){
+    echo 'hello';
+}
+
+say(){
+    echo "$1";
+    echo "$2";
+}
+
+
+
+# echo like ...  with  flag type  and display message  colors
+prompt () {
+  case ${1} in
+    "-s"|"--success")
+      echo -e "${b_CGSC}${@/-s/}${CDEF}";;          # print success message
+    "-e"|"--error")
+      echo -e "${b_CRER}${@/-e/}${CDEF}";;          # print error message
+    "-w"|"--warning")
+      echo -e "${b_CWAR}${@/-w/}${CDEF}";;          # print warning message
+    "-i"|"--info")
+      echo -e "${b_CCIN}${@/-i/}${CDEF}";;          # print info message
+    *)
+    echo -e "$@"
+    ;;
+  esac
+}
+
+get_poem() {
+    POEM=$(curl -s https://v1.jinrishici.com/all.json)
+    ORIGIN=$(echo $POEM |jq -r '.origin')
+    AUTHOR=$(echo $POEM |jq -r '.author' )
+    CONTENT=$(echo $POEM | jq -r '.content')
+    prompt -s "\t««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««\n\t🔶  ${ORIGIN} \n\t🔶  ${AUTHOR} \n\t🔶  ${CONTENT}   \n\t«««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««"
+#    CATEGORY=$(echo $POEM |jq '.category' )
+#    prompt -s "\n\t************************\n\t*  ${CATEGORY}   *\n\t************************"
+}
+
+git_cached(){
+  currentBranch=$(git branch --show-current)
+  echo "...current branch ${currentBranch}"
+  list=$(git diff --name-only --cached)
+  echo $list
+  echo "${currentBranch};"
+}

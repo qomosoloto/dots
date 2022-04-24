@@ -1,0 +1,289 @@
+let mapleader=','
+
+" % 跳转到匹配的括号， yy数字p->复制该行n次,  选中一个数字-> ctrl+a会加1,x会减1,
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmode
+" set relativenumber
+set scrolloff=3
+set history=100000
+set clipboard=unnamed
+set ideajoin
+" 交换位置, cx, cxx, X, cxc
+set exchange
+" 注释用插件 gcc, gc + motion, v_gc
+set commentary
+" aa, ia, xml的使用t选中标记 . 文本对象
+set argtextobj
+" 额外的textobj, ae, ie
+set textobj-entire
+" ys(ysiw],用[]包裹光标所在的单词,iw是text object, yss), 用()包裹整行.), cs(cs"',change "->', cs'<q>,change ' -> <q></q>), ds(ds", delete ";), S -针对括号,引号,xml标记等'surroundings';
+" 很有用的
+" 对于文本框，先选择好，然后 S，然后输入要包裹的 符号或文本
+set surround
+" easymotino, acejump https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
+" 快速跳转. 命令前缀: <Leader><Leader>
+" <Leader><Leader>f/F{char}: f往后寻找,F往前寻找 字符 -> ,,f/Fn{char}
+" <Leader><Leader>t/T{char}: t往后寻找,T往前寻找 字符 -> ,,t/Tn{char}
+" <Leader><Leader>w/W: 当前光标所在单词往后跳转
+" <Leader><Leader>b/B: 当前光标所在单词往前跳转
+" <Leader><Leader>e/E: 当前光标所在往后跳转
+" <Leader><Leader>ge/gE: 当前光标所在往前跳转
+" <Leader><Leader>s{char}: 搜索字符并跳转 -> ,,sn{char}
+set keep-english-in-normal-and-restore-in-insert
+set easymotion
+" 多光标操作 <A-n>, <A-x>, <A-p>, g<A-n>
+set multiple-cursors
+" 高亮复制
+set highlightedyank
+" 高亮持续时间, 负数为一直存在
+let g:highlightedyank_highlight_duration = "1500"
+" 更改高亮背景颜色
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
+" clear the highlighted search result
+
+
+nnoremap <Leader>? :action GotoAction<CR>
+nnoremap gu :action GotoImplementation<CR>
+
+
+
+" Quit normal mode
+nnoremap <Leader>q  :q<CR>
+nnoremap <Leader>Q  :qa!<CR>
+
+" Move half page faster
+nnoremap <Leader>d  <C-d>
+nnoremap <Leader>u  <C-u>
+
+" Insert mode shortcut
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Delete>
+" insert 模式下为粘贴
+imap <C-v> <ESC>:action $Paste<CR>
+
+" Yank to the end of line
+nnoremap Y y$
+
+" quit ==> close current window
+nnoremap <Leader>q <C-W>w
+
+
+" Window operation
+" 跳转到上一次窗口
+nnoremap <Leader>w :action JumpToLastWindow<CR>
+" 会在所有分割的窗口中跳转
+nnoremap <Leader>ww <C-W>w
+" 关闭group里所有窗口
+nnoremap <Leader>wd <C-W>c
+" 激活下边窗口
+nnoremap <Leader>wj <C-W>j
+" 激活上边窗口
+nnoremap <Leader>wk <C-W>k
+" 激活左边窗口
+nnoremap <Leader>wh <C-W>h
+" 激活右边窗口
+nnoremap <Leader>wl <C-W>l
+" 垂直分割窗口
+nnoremap <Leader>ws <C-W>s
+nnoremap <Leader>w- <C-W>s
+" 水平分割窗口
+nnoremap <Leader>wv <C-W>v
+nnoremap <Leader>w\| <C-W>v
+
+" Tab operation tab标签页切换
+" 不改变, 依然使用 gt/gT
+nnoremap <Leader>j gt
+nnoremap <Leader>k gT
+
+" ==================================================
+" Show all the provided actions via `:actionlist`
+" ==================================================
+
+" generate
+noremap <Leader>g <ESC>:action Generate<CR>
+" built in search looks better
+noremap / :action Find<CR>
+" find in path
+noremap g/ <ESC>:action FindInPath<CR>
+" replace
+noremap ' <ESC>:action Replace<CR>
+" replace in path
+noremap g' <ESC>:action ReplaceInPath<CR>
+" but preserve ideavim search
+nnoremap <Leader>/ /
+" 单行注释 //
+" nnoremap <Leader>;; :action CommentByLineComment<CR>
+" 打断点
+nnoremap <Leader>bb :action ToggleLineBreakpoint<CR>
+" view all breakpoints
+nnoremap <Leader>br :action ViewBreakpoints<CR>
+"
+nnoremap <Leader>cv :action ChangeView<CR>
+
+nnoremap <Leader>cd :action ChooseDebugConfiguration<CR>
+
+nnoremap <Leader>sp :action ShowFilePath<CR>
+" 不咋用过
+nnoremap <Leader>ic :action InspectCode<CR>
+
+nnoremap <Leader>oi :action OptimizeImports<CR>
+
+nnoremap <Leader>pm :action ShowPopupMenu<CR>
+
+nnoremap <Leader>rC :action ChooseRunConfiguration<CR>
+" 重命名文件
+nnoremap <Leader>rf :action RenameFile<CR>
+
+" ==================  查找被使用之处 =============
+nnoremap <Leader>su :action ShowUsages<CR>
+" 关闭当前tab页
+nnoremap <Leader>tc :action CloseActiveTab<CR>
+" 关闭其他非激活tab页
+nnoremap <Leader>qa :action CloseAllEditorsButActive<CR>
+" 下沉
+" nnoremap <Leader>si :action StepInto<CR>
+
+
+
+" ==================================================
+" Insert mode
+" ==================================================
+
+" 退出insert模式
+inoremap jk <Esc>
+
+" 插入模式下的上下左右移动光标 Insert mode shortcut
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+" 行尾加;并换行
+" inoremap ;<Cr> <Esc>A;<Cr>
+" 行尾加;不换行
+" inoremap ;; <Esc>A;
+" 给一个单词加"
+" inoremap' ;' <Esc>viw<Esc>a'<Esc>hbi'<Esc>lEa
+
+
+" ==================================================
+" Visual mode 可视模式下快捷键
+" ==================================================
+" 打开终端
+vnoremap <Leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
+" 注释
+vnoremap <Leader>cc :action CommentByLineComment<CR>
+
+" 快速跳转
+" vnoremap <Leader>j <C-d>
+" vnoremap <Leader>k <C-u>
+
+" 跳转到行首/行尾
+vnoremap H "^"
+vnoremap L "$"
+set clipboard+=ideaput
+
+" Quit visual mode
+vnoremap v <Esc>
+
+
+" ==================================================
+" Normal mode
+" ==================================================
+" 退出并保存
+nnoremap q :wq<Cr>
+nnoremap - dd
+" Redo
+nnoremap U <C-r>
+
+" 移动至行首、行尾
+nnoremap H "^"
+nnoremap L "$"
+
+" 注释
+nnoremap <Leader>cc :action CommentByLineComment<CR>
+
+" 窗口切换
+" nnoremap <tab> <C-w>
+
+" ============== Project search ==============
+nnoremap <Leader>ps :action SearchEverywhere<CR>
+nnoremap <Leader>of :action GotoFile<CR>
+
+" Terminal
+" 激活并光标移动到终端
+nnoremap <Leader>ot Vy<CR>:action ActivateTerminalToolWindow<CR>
+" 光标离开终端
+nooremap <leader>ct :action negativeTerminalToolWindow<CR>
+
+" 代码格式化
+nnoremap <Leader>rf :action ReformatCode<CR>
+
+" 打断点
+nnoremap <Leader>sb :action Debugger.FocusOnBreakpoint<CR>
+
+" 跳转到下一个错误
+nnoremap <Leader>nn :action GotoNextError<CR>
+nnoremap <Leader>nb :action GotoPreviousError<CR>
+
+" 重命名
+nnoremap <Leader>rn :action RenameElement<CR>
+
+" 取消高亮
+nnoremap <Leader>ch :nohlsearch<CR>
+
+" 文件保存
+nnoremap <Leader>fs :w<CR>
+
+" 查找使用的地方
+nnoremap <Leader>fu :action FindUsages<CR>
+
+
+" 查找相关
+" 创建动作
+nnoremap <Leader>ga :action GotoAction<CR>
+" 查找类
+nnoremap <Leader>gc :action GotoClass<CR>
+" 查找定义
+nnoremap <Leader>gd :action GotoDeclaration<CR>
+" 查找文件
+nnoremap <Leader>gf :action GotoFile<CR>
+" 查找实现
+nnoremap <Leader>i <ESC>:action GotoImplementation<CR>
+nnoremap <Leader>m :action GotoImplementation<CR>
+nnoremap <Leader>d :action GotoImplementation<CR>
+" Alt + Insert
+nnoremap <Leader>gi :action Generate<CR>
+" 查找符号
+nnoremap <Leader>gs :action GotoSymbol<CR>
+" 创建测试等
+nnoremap <Leader>gt :action GotoTest<CR>
+
+" 代码块
+map <C-[> :action Move Caret to Code Block Start<CR>
+map <C-]> :action Move Caret to Code Block End<CR>
+map <Leader>[ :action EditorCodeBlockStart<CR>
+map <Leader>] :action EditorCodeBlockEnd<CR>
+" Ctrl+W in idea
+map <C-k> :action EditorSelectWord<CR>
+
+" 跳转
+map <C-o> :action Back<CR>
+map <C-i> :action Forward<CR>
+" 跳转到上一次change
+nnoremap <Leader>g; :action JumpToLastChange<CR>
+" 跳转到下一次change
+nnoremap <Leader>g, :action JumpToNextChange<CR>
+" 全选
+nnoremap <Leader>sa ggVG<CR>
+nnoremap <Leader>nf :action NewFile<CR>

@@ -1,0 +1,27 @@
+alias chromium_proxy='chromium --proxy-server="socks5://127.0.0.1:1080"'
+alias grep='grep --color=auto'
+# alias vpn='sudo openvpn --config /etc/openvpn/client/公司VPN.ovpn --ca /etc/openvpn/client/ca.crt'
+# alias ent_vpn='sudo openvpn --config $HOME/ssqian/文档杂项/上海预发布VPN/上海预发布VPN.ovpn --ca $HOME/ssqian/文档杂项/上海预发布VPN/ca.crt --key $HOME/ssqian/文档杂项/上海预发布VPN/yong_xu.key --cert $HOME/ssqian/文档杂项/上海预发布VPN/yong_xu.crt'
+# alias ent_huawei_vpn='sudo openvpn --config $HOME/ssqian/文档杂项/华为云预发布VPN/华为云预发布VPN.ovpn --ca $HOME/ssqian/文档杂项/华为云预发布VPN/ca.crt --key $HOME/ssqian/文档杂项/华为云预发布VPN/yong_xu.key --cert $HOME/ssqian/文档杂项/华为云预发布VPN/yong_xu.crt'
+# alias comp_vpn='sudo openvpn --config $HOME/ssqian/文档杂项/公司VPN/公司VPN.ovpn --ca $HOME/ssqian/文档杂项/公司VPN/ca.crt'
+alias arthas='sh ~/apps/arthas/as.sh'
+# alias ent5='ssh root@10.128.45.231'
+# alias ent4='ssh root@10.112.208.251'
+# alias ent='ssh root@10.112.208.66'
+# alias ent_log='ssh yong_xu@192.168.1.82'
+# alias ent_log='ssh yong_xu@172.30.0.82   -o PubKeyAuthentication=no'
+
+# 清除缓存 /var/cache目录下
+alias cc='sudo pacman -Scc'
+# 查找大目录
+alias fb='du -sh $HOME/* 2>/dev/null | sort -hr | head -15'
+# discord
+alias discord='/opt/discord-canary/DiscordCanary --proxy-server="socks5://127.0.0.1:1080"'
+alias my_java="$HOME/CLionProjects/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/java"
+alias my_javac="$HOME/CLionProjects/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/javac"
+
+# gY7NLGH2WYaHGzoUqpWsPVS0
+# alias dev01="ssh 'root@10.128.1.255'"
+# alias dev02="ssh 'root@10.128.14.198'"
+# alias dev03="ssh 'root@10.128.46.62'"
+# alias reinstall_qv2ray="yay -S qv2ray --aur"
